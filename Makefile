@@ -6,7 +6,7 @@ BUILDDIR	= build
 LIBCURL	:= $(shell pkg-config --libs --cflags libcurl)
 
 RESD_TARGET		:= $(BUILDDIR)/resd
-RESD_SOURCES	:= Sources/main.c Sources/config.c Sources/disk.c Sources/discord.c
+RESD_SOURCES	:= Sources/main.c Sources/disk.c Sources/discord.c config.c
 
 ifeq ($(MODE), Debug)
 CFLAGS	+= -O0 -g -DRD_DEBUG -fsanitize=address
@@ -20,7 +20,7 @@ endif
 
 all: $(RESD_TARGET)
 
-$(RESD_TARGET): config.ini $(RESD_SOURCES) | $(BUILDDIR)
+$(RESD_TARGET): $(RESD_SOURCES) | $(BUILDDIR)
 	$(CC) $(RESD_SOURCES) $(CFLAGS) $(LIBCURL) -o $@
 
 $(BUILDDIR):

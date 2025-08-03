@@ -6,10 +6,6 @@
 #include <stdint.h>
 #include <stdio.h>
 
-struct rd_Config g_config = {
-  .max_disk_usage = 85.0f,
-};
-
 static void check_disk_usage()
 {
   struct rd_DiskStat disk_stat;
@@ -21,6 +17,8 @@ static void check_disk_usage()
   }
 
   if ( disk_stat.usage_percent <= g_config.max_disk_usage ) {
+    RD_LOG("the disk space is enough");
+
     return;
   }
 
@@ -38,8 +36,8 @@ static void check_disk_usage()
 
   const char* body_template
       = "{\"content\":\"%s\",\"embeds\":[{"
-        "\"title\":\"💾 Disk Alarm\",\"description\":\"Заканчивается место на "
-        "диске!\",\"color\":15405075,\"fields\":[{\"name\":\"Total\",\"value\":\"%.2fG\","
+        "\"title\":\"💾 Disk Alarm\",\"description\":\"The disk space is low!\","
+        "\"color\":15405075,\"fields\":[{\"name\":\"Total\",\"value\":\"%.2fG\","
         "\"inline\":true},{\"name\":\"Free\",\"value\":\"%.2fG\",\"inline\":true},{"
         "\"name\":\"Usage\",\"value\":\"%.1f%%\",\"inline\":true}]}],\"attachments\":[],"
         "\"allowed_mentions\":{\"parse\":[\"users\"],\"users\":[]},\"username\":"
@@ -55,11 +53,9 @@ static void check_disk_usage()
 
 int main(const int argc, const char* argv[])
 {
-  RD_LOG("resd - a utility for checking server resources and sending a message about the "
-         "need for maintenance.");
-
-  rd_Config_parse(&g_config);
-  rd_Config_dump(g_config);
+  RD_LOG(
+      "resd - an utility for checking server resources and sending a message about the "
+      "need for maintenance.");
 
   check_disk_usage();
 
