@@ -1,0 +1,22 @@
+BasedOnStyle: WebKit
+IndentWidth: 2
+Language: Cpp
+ColumnLimit: 90
+AlignConsecutiveAssignments: Consecutive
+AlignConsecutiveDeclarations: Consecutive
+AlignConsecutiveMacros: Consecutive
+AlignConsecutiveBitFields: Consecutive
+AlignConsecutiveShortCaseStatements: {
+  Enabled: true
+}
+AllowShortBlocksOnASingleLine: Empty
+AllowShortCaseExpressionOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+SpacesInParens: Custom
+SpacesInParensOptions:
+  ExceptDoubleParentheses: true
+  InConditionalStatements: true
